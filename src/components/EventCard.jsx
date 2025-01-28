@@ -5,14 +5,25 @@ import { ImCross } from "react-icons/im";
 import { SiGooglemeet } from "react-icons/si";
 import { TiTick } from "react-icons/ti";
 import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 const EventCard = ({ event, refreshEvents, variant = "upcoming" }) => {
+  const [isSender, setIsSender] = useState(false);
+
   const isUpcoming = variant === "upcoming";
   const dateTime = format(new Date(event.time), "EEEE, MMM d, yyyy h:mm a");
   const statusColors = {
     upcoming: "bg-blue-100 text-blue-800",
     past: "bg-red-100 text-red-800",
   };
+
+  useEffect(() => {
+    const user = JSON.parse(window.localStorage.getItem("userProfile"));
+    if (user) {
+      console.log(event.senderId, user.id, event.senderId == user.id);
+      setIsSender(event.senderId == user.id);
+    }
+  }, []);
 
   const acceptMeeting = async (meetingId) => {
     try {
@@ -74,7 +85,7 @@ const EventCard = ({ event, refreshEvents, variant = "upcoming" }) => {
         </div>
 
         {/* Action Buttons */}
-        {isUpcoming ? (
+        {isUpcoming && !isSender ? (
           <div className="border-t border-gray-100 pt-4">
             {event.accepted ? (
               <button
@@ -106,6 +117,10 @@ const EventCard = ({ event, refreshEvents, variant = "upcoming" }) => {
                 </button>
               </div>
             )}
+          </div>
+        ) : isUpcoming && isSender ? (
+          <div className="border-t border-gray-100 pt-4">
+            <p className="text-center text-lg text-green-500">Request Sent Successfully</p>
           </div>
         ) : (
           <div className="border-t border-gray-100 pt-4 flex items-center justify-between">
