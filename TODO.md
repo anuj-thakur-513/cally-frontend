@@ -1,0 +1,3 @@
+- Auth page ✅
+- User dashboard ✅
+- Scheduler page

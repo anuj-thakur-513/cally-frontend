@@ -21,7 +21,11 @@ const Auth = () => {
   const redirectAuth = async (code) => {
     try {
       const res = await axios.post(`/api/v1/user/googleRedirect?code=${code}`);
-      console.log(res);
+      if (res.data?.data && res.status === 200) {
+        window.location.href = "/";
+        const user = res.data.data?.user;
+        window.localStorage.setItem("userProfile", JSON.stringify(user));
+      }
     } catch (error) {
       console.error("Login failed:", error);
     }
