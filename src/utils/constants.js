@@ -18,4 +18,6 @@ const TIME_OPTIONS = [
   "17:00",
 ];
 
-export { TIME_OPTIONS };
+const PUBLIC_ROUTES = ["/auth", "/policy"];
+
+export { TIME_OPTIONS, PUBLIC_ROUTES };
