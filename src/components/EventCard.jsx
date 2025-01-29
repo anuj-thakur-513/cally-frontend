@@ -20,7 +20,6 @@ const EventCard = ({ event, refreshEvents, variant = "upcoming" }) => {
   useEffect(() => {
     const user = JSON.parse(window.localStorage.getItem("userProfile"));
     if (user) {
-      console.log(event.senderId, user.id, event.senderId == user.id);
       setIsSender(event.senderId == user.id);
     }
   }, []);
@@ -64,13 +63,15 @@ const EventCard = ({ event, refreshEvents, variant = "upcoming" }) => {
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-start space-x-4">
             <img
-              src={event?.sender?.profilePicture}
-              alt={`${event.sender.name}'s profile`}
+              src={!isSender ? event?.sender?.profilePicture : event?.receiver?.profilePicture}
+              alt={`${!isSender ? event.sender.name : event.receiver.name}'s profile`}
               className="w-12 h-12 rounded-full border-2 border-white shadow-sm"
             />
             <div>
               <h2 className="text-lg font-semibold text-gray-900">{event.title}</h2>
-              <p className="text-sm text-gray-500">{event.sender.name}</p>
+              <p className="text-sm text-gray-500">
+                {!isSender ? event.sender.name : event.receiver.name}
+              </p>
             </div>
           </div>
           <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[variant]}`}>
@@ -120,7 +121,21 @@ const EventCard = ({ event, refreshEvents, variant = "upcoming" }) => {
           </div>
         ) : isUpcoming && isSender ? (
           <div className="border-t border-gray-100 pt-4">
-            <p className="text-center text-lg text-green-500">Request Sent Successfully</p>
+            <p
+              className={`text-center text-lg ${
+                event.accepted
+                  ? "text-green-500"
+                  : !event.accepted && event.responded
+                  ? "text-red-500"
+                  : "text-blue-500"
+              }`}
+            >
+              {event.accepted
+                ? "Request Accepted"
+                : !event.accepted && event.responded
+                ? "Request Rejected"
+                : "Request Sent Successfully"}
+            </p>
           </div>
         ) : (
           <div className="border-t border-gray-100 pt-4 flex items-center justify-between">
