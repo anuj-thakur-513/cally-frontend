@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import LoadingSpinner from "./components/LoadingSpinner";
 import ErrorBoundary from "./components/ErrorBoundary";
 
@@ -24,6 +25,7 @@ function App() {
           </Routes>
         </Suspense>
       </ErrorBoundary>
+      <Footer />
     </>
   );
 }
