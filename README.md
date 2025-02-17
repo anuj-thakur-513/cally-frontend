@@ -1,8 +1,5 @@
-# React + Vite
+# Cally
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a very simple and basic alternate to [cal.com](cal.com). It lets you share your scheduler link with people and lets them send meeting requests to you. You'll be receiving an email on any new meeting request
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Visit [https://cally.anujthakur.dev](https://cally.anujthakur.dev) to try it out
