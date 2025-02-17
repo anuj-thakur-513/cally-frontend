@@ -10,6 +10,7 @@ const Header = () => {
     try {
       const res = await axios.post("/api/v1/user/logout");
       if (res.status === 200) {
+        localStorage.removeItem("userProfile");
         window.location.href = "/auth";
       }
     } catch (error) {
