@@ -1,11 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import EventCard from "../../components/EventCard";
+import { ImShare2 } from "react-icons/im";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
   const [selectedView, setSelectedView] = useState("upcoming");
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const copySchedulerLink = () => {
+    const user = JSON.parse(localStorage.getItem("userProfile"));
+    const link = `https://cally.anujthakur.dev/schedule/${user.id}`;
+    navigator.clipboard.writeText(link);
+    toast.success("Link to your scheduler copied to clipboard");
+  };
 
   const getEvents = async (type) => {
     setIsLoading(true);
@@ -64,6 +73,13 @@ const Dashboard = () => {
               >
                 Past
               </button>
+            </div>
+            <div
+              className="m-1.5 bg-transparent transition duration-200 hover:bg-blue-500 text-blue-700 hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded cursor-pointer flex items-center space-x-2"
+              onClick={copySchedulerLink}
+            >
+              <ImShare2 />
+              <span>Scheduler Link</span>
             </div>
           </div>
 

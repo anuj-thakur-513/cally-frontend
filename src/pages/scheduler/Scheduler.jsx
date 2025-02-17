@@ -52,6 +52,13 @@ const Scheduler = () => {
   };
 
   useEffect(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem("userProfile"));
+    if (loggedInUser.id == userId) {
+      window.location.href = "/";
+    }
+  }, []);
+
+  useEffect(() => {
     getUser();
   }, [userId]);
 
