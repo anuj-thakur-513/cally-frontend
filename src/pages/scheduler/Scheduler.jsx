@@ -56,33 +56,28 @@ const Scheduler = () => {
                     window.location.href = "/";
                 }
             } catch (error) {
-                setTimeout(() => {
                     toast.dismiss(loadingtoast)
                     toast.error("Error faced while scheduling meeting");
-                    console.log(error);
-                }, 2000)
-
+                    console.error(error);
             }
-            setTimeout(() => {
                 setsubmittingFlag(false);
-            }, 2000)
-
         }
     };
     useEffect(() => {
-        // const loggedInUser = JSON.parse(localStorage.getItem("userProfile"));
-        // if (loggedInUser.id == userId) {
-        //     window.location.href = "/";
-        // }
-        setReceiver({
-            id: "123",
-            name: "John Doe",
-            profilePicture: "https://via.placeholder.com/150",
-        })
+        const loggedInUser = JSON.parse(localStorage.getItem("userProfile"));
+        if (loggedInUser.id == userId) {
+            window.location.href = "/";
+        }
+        // Dummy data
+        // setReceiver({
+        //     id: "123",
+        //     name: "lakshay jain",
+        //     profilePicture: "https://via.placeholder.com/150",
+        // })
     }, []);
 
     useEffect(() => {
-        // getUser();
+        getUser();
     }, [userId]);
 
     if (!isLoading) {
