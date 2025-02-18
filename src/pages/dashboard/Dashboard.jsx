@@ -46,7 +46,7 @@ const Dashboard = () => {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <h1 className="text-3xl font-bold text-gray-900 mb-4 md:mb-0">
               Your Events
-              {!isLoading && <span className="text-blue-600 ml-2">({events.length})</span>}
+              {!isLoading && <span className="text-blue-600 ml-2">({events?.length||""})</span>}
             </h1>
 
             {/* Toggle Switch */}
