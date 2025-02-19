@@ -46,7 +46,11 @@ const Dashboard = () => {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <h1 className="text-3xl font-bold text-gray-900 mb-4 md:mb-0">
               Your Events
-              {!isLoading && <span className="text-blue-600 ml-2">({events?.length||""})</span>}
+              {!isLoading && (
+                <span className="text-blue-600 ml-2">
+                  ({events?.length || ""})
+                </span>
+              )}
             </h1>
 
             {/* Toggle Switch */}
@@ -110,8 +114,12 @@ const Dashboard = () => {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center h-64 rounded-xl bg-white border-2 border-dashed border-gray-200">
-              <p className="text-gray-500 text-lg">No {selectedView} events found</p>
-              <p className="text-gray-400 text-sm mt-2">Create a new event to get started</p>
+              <p className="text-gray-500 text-lg">
+                No {selectedView} events found
+              </p>
+              <p className="text-gray-400 text-sm mt-2">
+                Create a new event to get started
+              </p>
             </div>
           )}
         </div>
