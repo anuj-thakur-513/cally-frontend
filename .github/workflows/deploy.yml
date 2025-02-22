@@ -41,4 +41,5 @@ jobs:
             npm install 
             npm run build
             sudo cp -R dist/* /var/www/cally
+            sudo rm -r dist node_modules
             sudo systemctl restart nginx
